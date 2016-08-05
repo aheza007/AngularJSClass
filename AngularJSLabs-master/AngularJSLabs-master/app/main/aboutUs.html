@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<script src="../../app/node_modules/angular/angular.js"></script>
+		<script src="./mainModule.js"></script>
+		<script src="./aboutUsController.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+	</head>
+	<body ng-app="mainModule" class="container" ng-controller="abooutUsController"  >
+	<br/>  
+	<div class="jumbotron">
+    <h1>AngularJS Quick Start Lab</h1> 
+		<div class="row">
+			<div class="col-xs-6  ">
+			<ul>
+				<li>Company Name:{{::company.name}}</li>
+				<li>Company Address:{{::company.streetAddress}}</li>
+				<li>Phone:{{::company.phoneNumber}}</li>
+			</ul>
+			</div>
+			<div class="col-xs-6">
+				<span>{{today | date:"fullDate"}}</span> <br/>
+				<span>{{today | date:"longDate"}}</span> <br/>
+				<span>{{today | date:"shortDate"}}</span> <br/>
+				<span>{{today | date:"mediumDate"}}</span> <br/>
+			</div>
+			
+		</div>
+		<br/> <br/> 
+		<div ng-controller="abooutUsController" class="row">
+			  <form class="form-inline" role="form">
+    <div class="form-group">
+      <label class="sr-only" for="salary">Salary:</label>
+      <input ng-model="salary" type="number" class="form-control" id="salary" placeholder="Enter salary">
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="numberOfYear">Number of years:</label>
+      <input ng-model="numberOfYear" type="number" class="form-control" id="numberOfYear" placeholder="Enter number of years">
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="TotalCash">Number of years:</label>
+      <!--<input type="number" ng-bind="TotalCash" class="form-control" id="TotalCash" placeholder="$ to be paid">-->
+	   
+    </div>
+	
+    <br/> <br/> <span>Cash to be paid </span><strong><span ng-bind="salary*numberOfYear | currency"></span></strong>
+  
+  </form>
+		
+		</div>
+		
+		<section>
+			<h3>Map of our Headquarters</h3>
+			<img ng-attr-src="https://maps.googleapis.com/maps/api/staticmap?markers={{::company.streetAddress}}{{::company.city}}{{::company.region}}{{::company.postalCode}}&size=600x600&maptype=hybrid">
+			
+		</section>
+	</body>
+
+</html>

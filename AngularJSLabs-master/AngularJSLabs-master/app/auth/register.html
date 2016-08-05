@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Register</title>
+   <script src="../../app/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../../app/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../../app/node_modules/angular/angular.js"></script>
+  <link rel="stylesheet" href="../../app/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href=".../../../../assets/css/site.css"/>
+  <script src="./authModule.js"></script>
+  <script src="./registerController.js"></script>
+</head>
+<body class="container" ng-app="authModule">
+<main ng-controller="registerController" class="row">
+
+  <h2>Create a New Account</h2>
+
+  <p class="alert alert-info">
+    Use the form below to create a new account.
+  </p>
+
+  <div>
+    <form ng-submit="register(user)" name="registerForm" novalidate>
+      <fieldset class="col-md-6">
+        <legend>
+          Account Information
+        </legend>
+        <div class="form-group has-feedback">
+          <label for="username" class="control-label">Username:</label>
+          <!--<input ng-model="user.userName" name="username" class="form-control" pattern="^\w+$" required />-->
+		  <input ng-model="user.userName" name="username" ng-maxlength="20" class="form-control" />
+		  <div ng-show="registerForm.username.$dirty&&registerForm.username.$error.maxlength" class="alert alert-danger">Too many charcter,shorten it. </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label for="email" class="control-label">E-mail:</label>
+          <input ng-model="user.email" type="email" name="email" class="form-control" required />
+		  <div ng-show="registerForm.email.$touched&&registerForm.email.$error.email" class="alert alert-danger">your email is invalid. </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label for="firstName" class="control-label">First (given) Name</label>
+          <input ng-model="user.firstName" name="firstName" class="form-control" required />
+        </div>
+        <div class="form-group has-feedback">
+          <label for="lastName" class="control-label">Last (family) Name</label>
+          <input ng-model="user.lastName" name="lastName" class="form-control" required />
+        </div>
+        <div class="form-group has-feedback">
+          <label for="password" id="PasswordLabel" class="control-label">Password:</label>
+          <input ng-model="user.password" type="password" name="password" class="form-control" required />
+        </div>
+        <div class="form-group has-feedback">
+          <label for="confirmPassword" id="confirmPasswordLabel" class="control-label">Confirm Password:</label>
+          <input ng-model="user.confirmPassword" type="password" name="confirmPassword" class="form-control" required />
+        </div>
+      </fieldset>
+      <fieldset class="col-md-6">
+        <legend>
+          My address information
+        </legend>
+
+        <div class="form-group has-feedback">
+          <label for="companyName" class="control-label">Company Name</label>
+          <input name="companyName" class="form-control" id="companyName" pattern="^.{5,}" required
+          title="Restaurant/cafe name (at least 5 characters)." />
+        </div>
+        <div class="form-group has-feedback">
+          <label for="address" class="control-label">Address</label>
+          <input name="address" class="form-control" id="address"/>
+        </div>
+        <div class="form-group has-feedback">
+          <label for="city" class="control-label">City</label>
+          <input name="city" class="form-control" />
+        </div>
+        <div class="form-group has-feedback">
+          <label for="region" class="control-label">Region/State</label>
+          <input name="region" class="form-control" />
+        </div>
+        <div class="form-group has-feedback">
+          <label for="postalCode" class="control-label">Postal Code</label>
+          <input name="postalCode" class="form-control" />
+        </div>
+        <div class="form-group has-feedback">
+          <label for="country" class="control-label">Country</label>
+          <input name="country" class="form-control" />
+        </div>
+      </fieldset>
+      <input type="submit" ng-disabled="registerForm.$invalid" class="btn btn-primary" value="Create User" />
+    </form>
+    <p ng-show="successMessage.length" class="alert alert-success">
+		{{ successMessage }}
+    </p>
+    <p class="alert alert-danger">
+    </p>
+  </div>
+</main>
+</body>
+</html>
